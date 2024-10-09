@@ -1,0 +1,29 @@
+{
+	"name": "sveltekit-frontend-interview-template",
+	"version": "1.0.0",
+	"type": "module",
+	"scripts": {
+		"check": "svelte-kit sync && svelte-check",
+		"build": "vite build",
+		"dev": "vite dev"
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-static": "^3.0.1",
+		"@sveltejs/kit": "^2.0.0",
+		"@sveltejs/vite-plugin-svelte": "^3.0.0",
+		"svelte": "^4.1.1",
+		"svelte-check": "^4.0.4",
+		"typescript": "^5.0.4",
+		"vite": "^5.0.0"
+	},
+	"optionalDependencies": {
+		"@typescript-eslint/eslint-plugin": "^8.0.0",
+		"@typescript-eslint/parser": "^8.0.0",
+		"eslint": "^8.57.0",
+		"eslint-plugin-import": "^2.26.0",
+		"eslint-plugin-svelte": "^2.32.4",
+		"prettier": "^3.0.0",
+		"prettier-plugin-svelte": "^3.0.0",
+		"svelte-eslint-parser": "^0.41.0"
+	}
+}
