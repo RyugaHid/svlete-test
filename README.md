@@ -1,7 +1,7 @@
 При решении задач нужно использовать `typescript`. Выполнение команды `npm run check` не должно возвращать ошибок.
 
 <details>
-<sumamry>Задача 1</summary>
+<summary>Задача 1</summary>
 
 ![](src/assets/step-1.webm)
 
@@ -15,7 +15,7 @@
 </details>
 
 <details>
-<sumamry>Задача 2</summary>
+<summary>Задача 2</summary>
 
 ![](src/assets/step-2.webm)
 
@@ -28,7 +28,7 @@
 </details>
 
 <details>
-<sumamry>Задача 3</summary>
+<summary>Задача 3</summary>
 
 ![](src/assets/step-3.webm)
 
