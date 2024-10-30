@@ -13,19 +13,19 @@
 		interval = inputValue;
 	};
 
-    const reset = () => {
-        isDisabled = true;
-        inputValue = 100;
-        interval = inputValue;
-        
-        if (typingAction && 'reset' in typingAction) {
-            (typingAction as any).reset();
-        }
-    }
-	 const bindTyping = (node: HTMLDivElement, interval: number) => {
-        typingAction = typing(node, interval);
-        return typingAction;
-    }
+	const reset = () => {
+		isDisabled = true;
+		inputValue = 100;
+		interval = inputValue;
+
+		if (typingAction && 'reset' in typingAction) {
+			(typingAction as any).reset();
+		}
+	};
+	const bindTyping = (node: HTMLDivElement, interval: number) => {
+		typingAction = typing(node, interval);
+		return typingAction;
+	};
 </script>
 
 <main>
@@ -55,17 +55,18 @@
 		flex-wrap: wrap;
 		gap: 16px;
 	}
-    .text {
-        background-color: #eeeeee;
-        width: 100%;
-        height: 100%;
-        overflow-y: auto;
-        scrollbar-width: none;  
-        -ms-overflow-style: none;  
-    }
-    .text::-webkit-scrollbar {
-        display: none;
-    }
+	.text {
+		background-color: #eeeeee;
+		width: 100%;
+		height: 100%;
+		overflow-y: auto;
+		word-break: break-all;
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+	}
+	.text::-webkit-scrollbar {
+		display: none;
+	}
 	input {
 		flex: 1;
 		min-width: 0;

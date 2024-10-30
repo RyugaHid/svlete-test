@@ -47,7 +47,6 @@ const typing: TypingAction = (node, interval) => {
 		},
 	};
 
-	// Добавляем метод reset к возвращаемому объекту
 	(returnValue as any).reset = reset;
 
 	return returnValue;
