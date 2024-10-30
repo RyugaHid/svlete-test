@@ -54,6 +54,8 @@
 		display: flex;
 		flex-wrap: wrap;
 		gap: 16px;
+		font-family: 16px Arial, Helvetica, sans-serif ;
+
 	}
 	.text {
 		background-color: #eeeeee;
