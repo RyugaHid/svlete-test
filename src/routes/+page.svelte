@@ -1,9 +1,10 @@
 <script lang="ts">
 	import typing from '$lib/typing';
+	import { onMount } from 'svelte';
 	let interval: number = 100;
 	let inputValue: number = 100;
 	let isDisabled = true;
-	let node: HTMLDivElement | null = null;
+	let node: HTMLElement;
 	let typingAction: ReturnType<typeof typing> | null = null;
 	const handleInput = () => {
 		isDisabled = !Number(inputValue !== interval);
@@ -22,6 +23,7 @@
 			(typingAction as any).reset();
 		}
 	};
+
 	const bindTyping = (node: HTMLDivElement, interval: number) => {
 		typingAction = typing(node, interval);
 		return typingAction;
@@ -61,8 +63,10 @@
 		height: 100%;
 		overflow-y: auto;
 		scrollbar-width: none;
+		overflow-wrap: break-word;
 		-ms-overflow-style: none;
 	}
+
 	.text::-webkit-scrollbar {
 		display: none;
 	}

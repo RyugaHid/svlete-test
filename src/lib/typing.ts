@@ -4,51 +4,28 @@ type TypingAction = Action<HTMLElement, number> & {
 	reset?: () => void;
 };
 
-const typing: TypingAction = (node: any, interval) => {
-	let text = node.textContent || '';
-	const divWidth = node.clientWidth;
-	console.log('divWidth', divWidth);
-	let wordIndex = 0;
-	let charIndex = 0;
-	let intervalId: number;
-	let words = text.split(' ');
-	const getTextWidth = (text: any): any => {
-		const canvas = document.createElement('canvas');
-		const context = canvas.getContext('2d');
-		if (context) {
-			return context.measureText(text).width;
-		}
-		return 0;
-	};
-	const getDistanceFromTextToRight = (word: any) => {
-		const regex = /.$/;
-		const lastChar = word.textContent.match(regex)[1];
-		const canvas = document.createElement('canvas');
-		const context = canvas.getContext('2d');
+export const typing: TypingAction = (node: HTMLElement, interval) => {
+	let index = 0;
+	const text = node.textContent?.trim() || '';
 
-		const lastWordWidth: any = context?.measureText(lastChar).width;
-		const elementWidth = word.clientWidth;
-		const distance = elementWidth - lastWordWidth;
-		return distance;
-	};
+	const arr = text.split('');
+	node.textContent = '';
+	for (let i of arr) {
+		let span = document.createElement('span');
+		span.style.opacity = '0';
+		span.textContent = i;
+		node.appendChild(span);
+	}
+	let spans: any = Array.from(node.querySelectorAll('span'));
+	let intervalId = 0;
+
 	const startInterval = () => {
 		clearInterval(intervalId);
-		node.textContent = '';
 
 		intervalId = setInterval(() => {
-			if (wordIndex < words.length) {
-				let word = words[wordIndex];
-				const nextWordWidth = getTextWidth(word);
-
-				if (charIndex < word.length) {
-					node.textContent += word[charIndex];
-
-					charIndex++;
-				} else {
-					node.textContent += ' ';
-					wordIndex++;
-					charIndex = 0;
-				}
+			if (index < spans.length) {
+				spans[index].style.opacity = '1';
+				index++;
 			} else {
 				clearInterval(intervalId);
 			}
@@ -58,8 +35,15 @@ const typing: TypingAction = (node: any, interval) => {
 	startInterval();
 
 	function reset() {
-		wordIndex = 0;
-		charIndex = 0;
+		index = 0;
+		node.textContent = '';
+		for (let i of arr) {
+			let span = document.createElement('span');
+			span.style.opacity = '0';
+			span.textContent = i;
+			node.appendChild(span);
+		}
+		spans = Array.from(node.querySelectorAll('span'));
 		startInterval();
 	}
 
@@ -67,22 +51,9 @@ const typing: TypingAction = (node: any, interval) => {
 		update(newInterval: number) {
 			clearInterval(intervalId);
 			intervalId = setInterval(() => {
-				if (wordIndex < words.length) {
-					let word = words[wordIndex];
-					const currentTextWidth = getTextWidth(node.textContent);
-					const nextWordWidth = getTextWidth(word);
-
-					if (currentTextWidth + nextWordWidth + getTextWidth(' ') > node.clientWidth) {
-						node.innerHTML += '<br>';
-					}
-					if (charIndex < word.length) {
-						node.textContent += word[charIndex];
-						charIndex++;
-					} else {
-						node.textContent += ' ';
-						wordIndex++;
-						charIndex = 0;
-					}
+				if (index < spans.length) {
+					spans[index].style.opacity = '1';
+					index++;
 				} else {
 					clearInterval(intervalId);
 				}
